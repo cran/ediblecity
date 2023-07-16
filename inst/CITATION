@@ -1,0 +1,10 @@
+bibentry(
+  bibtype  = "Article",
+  title    = "ediblecity: an R package to model and estimate the benefits of urban agriculture",
+  author   = "Josep Pueyo-Ros, Joaquim Comas, Lluís Corominas",
+  journal  = "Open Research Europe",
+  year     = 2023,
+  volume   = 3,
+  number   = 112,
+  doi      = "10.12688/openreseurope.16054.1"
+)

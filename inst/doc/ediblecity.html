@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ediblecity</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">ediblecity</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ediblecity)</span></code></pre></div>
+<div id="set-scenarios-of-urban-agriculture" class="section level2">
+<h2>Set scenarios of urban agriculture</h2>
+<p>The function <code>set_scenario</code> provides a convenient way to
+create randomized scenarios for urban agriculture. We use the
+<code>city_example</code> provided with the package that is meant to
+serve as example to create a model for a city of interest.</p>
+<p>We create one scenario, with 50% of normal gardens, vacant plot,
+streets and 75% of rooftops converted to edible_gardens. And with 50% of
+created gardens being for commercial purposes. To see the correspondence
+between original and urban agriculture elements, see
+<code>?set_scenario</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>scenario <span class="ot">&lt;-</span> <span class="fu">set_scenario</span>(city_example,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">pGardens =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">pVacant =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">pRooftop =</span> <span class="fl">0.75</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">private_gardens_from =</span> <span class="st">&quot;Normal garden&quot;</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">vacant_from =</span> <span class="fu">c</span>(<span class="st">&quot;Vacant&quot;</span>, <span class="st">&quot;Streets&quot;</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">rooftop_from =</span> <span class="st">&quot;Rooftop&quot;</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">pCommercial =</span> <span class="fl">0.5</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Only 328 rooftops out of 453 assumed satisfy the &#39;min_area_rooftop&#39;</span></span></code></pre></div>
+<p>The warnings are triggered when there are not elements enough to
+fulfill the proportions provided to the function.</p>
+<p>in this examples, we use the scenario created with
+<code>set_scenario</code>, but all the indicators can be calculated
+using an <code>sf</code> object with the same structure as
+<code>city_example</code>.</p>
+<p>Likewise, all the parameters used by the indicators are defined in
+<code>city_land_uses</code>. However, all indicators provide an option
+to override this an provide a customized dataframe with the parameters.
+The structure of this dataframe is detailed in the documentation of each
+function.</p>
+</div>
+<div id="estimate-the-benefits-of-urban-agriculture" class="section level2">
+<h2>Estimate the benefits of urban agriculture</h2>
+<div id="urban-heat-island" class="section level3">
+<h3>Urban Heat Island</h3>
+<p>The urban heat island indicator can return a summary of values or a
+<code>stars</code> object. It needs a raster representing the Sky view
+factor. See <code>?UHI</code> for more details. We use the
+<code>SVF</code> object provided with the package.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">UHI</span>(scenario, SVF)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in CPL_rasterize(file, driver, st_geometry(sf), values, options, : GDAL</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Message 1: The definition of geographic CRS EPSG:4258 got from GeoTIFF keys is</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; not the same as the one from the EPSG registry, which may cause issues during</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reprojection operations. Set GTIFF_SRS_SOURCE configuration option to EPSG to</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; use official parameters (overriding the ones from GeoTIFF keys), or to GEOKEYS</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; to use custom values from GeoTIFF keys and drop the EPSG code.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in CPL_read_gdal(as.character(x), as.character(options),</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; as.character(driver), : GDAL Message 1: The definition of geographic CRS</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; EPSG:4258 got from GeoTIFF keys is not the same as the one from the EPSG</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; registry, which may cause issues during reprojection operations. Set</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GTIFF_SRS_SOURCE configuration option to EPSG to use official parameters</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (overriding the ones from GeoTIFF keys), or to GEOKEYS to use custom values</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; from GeoTIFF keys and drop the EPSG code.</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0.000   0.551   1.016   1.033   1.419   2.587</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">UHI</span>(scenario, SVF, <span class="at">return_raster =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in CPL_rasterize(file, driver, st_geometry(sf), values, options, : GDAL</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Message 1: The definition of geographic CRS EPSG:4258 got from GeoTIFF keys is</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; not the same as the one from the EPSG registry, which may cause issues during</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reprojection operations. Set GTIFF_SRS_SOURCE configuration option to EPSG to</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; use official parameters (overriding the ones from GeoTIFF keys), or to GEOKEYS</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; to use custom values from GeoTIFF keys and drop the EPSG code.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in CPL_read_gdal(as.character(x), as.character(options),</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; as.character(driver), : GDAL Message 1: The definition of geographic CRS</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; EPSG:4258 got from GeoTIFF keys is not the same as the one from the EPSG</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; registry, which may cause issues during reprojection operations. Set</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; GTIFF_SRS_SOURCE configuration option to EPSG to use official parameters</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (overriding the ones from GeoTIFF keys), or to GEOKEYS to use custom values</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; from GeoTIFF keys and drop the EPSG code.</span></span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="runoff-prevention" class="section level3">
+<h3>Runoff prevention</h3>
+<p>The function <code>runoff_prev</code> returns an estimation of the
+runoff in the city after a specific rain event (mm/day). It also
+estimates the total rainfall and the rainwater harvested by urban
+agriculture.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runoff_prev</span>(scenario)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       runoff     rainfall  rainharvest </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     35.94306 108169.04500   1457.54729</span></span></code></pre></div>
+</div>
+<div id="distance-to-closest-green-area" class="section level3">
+<h3>Distance to closest green area</h3>
+<p>The function <code>green_distance</code> computes the distances from
+each home in the city to its closest public green area larger than a
+specific area. The homes must be identified using the column passed to
+<code>residence_col</code>. The default values for minimal area (0.5 ha)
+and for maximum distance (300 meters) follow the recommendations of
+WHO.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">green_distance</span>(scenario)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    6.12  155.08  251.70  249.72  347.42  465.73</span></span></code></pre></div>
+<p>If <code>percent_out</code> is set to <code>TRUE</code>, instead of a
+summary of distances, it returns the percentage of homes that are
+further than <code>max_dist</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">green_distance</span>(scenario, <span class="at">percent_out =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 36.92615</span></span></code></pre></div>
+</div>
+<div id="green-per-capita" class="section level3">
+<h3>Green per capita</h3>
+<p>The function <code>green_capita</code> calculates the amount of
+public and/or private green are per capita in the city. It can compute
+the total of the city, the values for each neighbourhood or the ratio
+between the neighbourhoods with minimum and maximum value (min /
+max).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">green_capita</span>(scenario, <span class="at">inhabitants =</span> <span class="dv">6000</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10.6845</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">green_capita</span>(scenario, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">neighbourhoods =</span> neighbourhoods_example, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">inh_col =</span> <span class="st">&#39;inhabitants&#39;</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">name_col =</span> <span class="st">&#39;name&#39;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   name              area inhabitants green_capita</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Sant Narcís nord 35957        1028        35.0 </span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Sant Narcís sud  33230        5290         6.28</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">green_capita</span>(scenario, </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">neighbourhoods =</span> neighbourhoods_example, </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">inh_col =</span> <span class="st">&#39;inhabitants&#39;</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">name_col =</span> <span class="st">&#39;name&#39;</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1795909</span></span></code></pre></div>
+</div>
+<div id="nitrogen-dioxide-no2-sequestered-by-urban-green" class="section level3">
+<h3>Nitrogen dioxide (NO<sub>2</sub>) sequestered by urban green</h3>
+<p>The function <code>no2_seq</code> computes the amount of
+NO<sub>2</sub> sequestered by urban green in gr/s.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">no2_seq</span>(scenario)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     gr/s </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 109.4544</span></span></code></pre></div>
+</div>
+<div id="jobs-created-by-commercial-urban-agriculture" class="section level3">
+<h3>Jobs created by commercial urban agriculture</h3>
+<p>The function <code>edible_jobs</code> estimates the number of jobs
+potentially created by commercial urban agriculture. Since the number of
+jobs / m2 is randomized, it computes a Monte Carlo simulation (n=1000)
+to estimate the value and returns the confidence interval (unless
+<code>verbose = TRUE</code>).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">edible_jobs</span>(scenario)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        5%       50%       95% </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  220.5918 1626.6634 3158.8951</span></span></code></pre></div>
+</div>
+<div id="volunteers-involved-in-community-urban-agriculture" class="section level3">
+<h3>Volunteers involved in community urban agriculture</h3>
+<p>The function <code>edible_volunteers</code> estimates the number of
+volunteers potentially involved in community urban agriculture. Since
+the number of volunteers / m2 is randomized, it computes a Monte Carlo
+simulation (n=1000) to estimate the value and returns the confidence
+interval (unless <code>verbose = TRUE</code>).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">edible_volunteers</span>(scenario)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        5%       50%       95% </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  273.3766 2224.1086 4385.3583</span></span></code></pre></div>
+</div>
+<div id="food-production" class="section level3">
+<h3>Food production</h3>
+<p>The function <code>food_production</code> estimates the food produced
+by urban agriculture (in kg/year). Since the productivity of each plot
+is randomized, It computes a Monte Carlo simulation (n=1000) to estimate
+the value and returns the confidence interval (unless
+<code>verbose = TRUE</code>).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">food_production</span>(scenario)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        5%       50%       95% </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  667946.7  916532.1 1145246.6</span></span></code></pre></div>
+</div>
+</div>
+<div id="randomization" class="section level2">
+<h2>Randomization</h2>
+<p>The construction of scenarios as well as some parameters in the
+indicators are randomized to consider uncertainty. Our recommendation is
+to run each scenario you want to simulate in a Monte Carlo simulation to
+get the confidence interval for each indicator. You will find a
+practical implementation <a href="https://github.com/icra/msn_scenarios/blob/master/R/estimate_scenarios.R">here</a>.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
